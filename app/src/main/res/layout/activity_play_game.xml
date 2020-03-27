@@ -23,7 +23,7 @@
             <TableRow
                 android:id="@+id/r01"
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"></TableRow>
 
             <TableRow

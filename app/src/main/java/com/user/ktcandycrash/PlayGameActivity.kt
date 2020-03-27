@@ -6,6 +6,7 @@ import android.os.Message
 import android.util.DisplayMetrics
 import android.util.Log
 import android.view.View
+import android.view.animation.Animation
 import android.view.animation.TranslateAnimation
 import android.widget.Button
 import kotlinx.android.synthetic.main.activity_main.*
@@ -29,6 +30,8 @@ class PlayGameActivity : AppCompatActivity() {
 
     //確認相鄰
     var arenext = 0
+
+    //若交換失敗的動畫，有返回動畫
     //向右
     val rani = TranslateAnimation(0f, -200f, 0f, 0f)
     //向左
@@ -37,6 +40,16 @@ class PlayGameActivity : AppCompatActivity() {
     val uani = TranslateAnimation(0f, 0f, 0f, -200f)
     //向下
     val dani = TranslateAnimation(0f, 0f, 0f, +200f)
+
+    //若交換成功的動畫，無返回動畫
+    //向右
+    val rani2 = TranslateAnimation(0f, -200f, 0f, 0f)
+    //向左
+    val lani2 = TranslateAnimation(0f, +200f, 0f, 0f)
+    //向上
+    val uani2 = TranslateAnimation(0f, 0f, 0f, -200f)
+    //向下
+    val dani2 = TranslateAnimation(0f, 0f, 0f, +200f)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,14 +77,29 @@ class PlayGameActivity : AppCompatActivity() {
         lani.duration = 500
         uani.duration = 500
         dani.duration = 500
-        rani.repeatCount = 0
-        lani.repeatCount = 0
-        uani.repeatCount = 0
-        dani.repeatCount = 0
+        rani.repeatCount = 1
+        lani.repeatCount = 1
+        uani.repeatCount = 1
+        dani.repeatCount = 1
         rani.repeatMode = ValueAnimator.REVERSE
         lani.repeatMode = ValueAnimator.REVERSE
         uani.repeatMode = ValueAnimator.REVERSE
         dani.repeatMode = ValueAnimator.REVERSE
+
+        rani2.duration = 500
+        lani2.duration = 500
+        uani2.duration = 500
+        dani2.duration = 500
+        rani2.repeatCount = 0
+        lani2.repeatCount = 0
+        uani2.repeatCount = 0
+        dani2.repeatCount = 0
+        rani2.repeatMode = ValueAnimator.REVERSE
+        lani2.repeatMode = ValueAnimator.REVERSE
+        uani2.repeatMode = ValueAnimator.REVERSE
+        dani2.repeatMode = ValueAnimator.REVERSE
+
+
 
         for (i in 0..11) {
             for (j in 0..7){
@@ -139,45 +167,78 @@ class PlayGameActivity : AppCompatActivity() {
 
                                     val xx = Integer.parseInt(splitfrist[0]) - Integer.parseInt(splitsecond[0])
                                     val yy = Integer.parseInt(splitfrist[1]) - Integer.parseInt(splitsecond[1])
+
+                                    //交換顏色/數字 取得這兩個按鈕的位置 再去mapcolor將對應位置換顏色
+                                    var saveColor = mapColor[Integer.parseInt(splitfrist[0])][Integer.parseInt(splitfrist[1])]
+                                    mapColor[Integer.parseInt(splitfrist[0])][Integer.parseInt(splitfrist[1])] = mapColor[Integer.parseInt(splitsecond[0])][Integer.parseInt(splitsecond[1])]
+                                    mapColor[Integer.parseInt(splitsecond[0])][Integer.parseInt(splitsecond[1])] = saveColor
+                                    removeYes = 0
+                                    checkAll()
+
                                     if(xx==0&&yy==1){
-                                        //先右後左
-                                        Log.e("AAAAAA", "先右後左")
-                                        b.startAnimation(lani)
-                                        btx!!.startAnimation(rani)
-                                        arenext=1
+                                        if(removeYes==1){
+                                            //先右後左
+                                            Log.e("AAAAAA", "先右後左")
+                                            b.startAnimation(lani2)
+                                            btx!!.startAnimation(rani2)
+                                            arenext=1
+                                        }else{
+                                            //先右後左
+                                            Log.e("AAAAAA", "先右後左")
+                                            b.startAnimation(lani)
+                                            btx!!.startAnimation(rani)
+                                            arenext=1
+                                        }
                                     }
                                     if(xx==0&&yy==-1){
-                                        //先左後右
-                                        Log.e("AAAAAA", "先左後右")
-                                        b.startAnimation(rani)
-                                        btx!!.startAnimation(lani)
-                                        arenext=1
+                                        if(removeYes==1){
+                                            //先左後右
+                                            Log.e("AAAAAA", "先左後右")
+                                            b.startAnimation(rani2)
+                                            btx!!.startAnimation(lani2)
+                                            arenext=1
+                                        }else{
+                                            //先左後右
+                                            Log.e("AAAAAA", "先左後右")
+                                            b.startAnimation(rani)
+                                            btx!!.startAnimation(lani)
+                                            arenext=1
+                                        }
                                     }
                                     if(xx==1&&yy==0){
-                                        //先下後上
-                                        Log.e("AAAAAA", "先下後上")
-                                        b.startAnimation(dani)
-                                        btx!!.startAnimation(uani)
-                                        arenext=1
+                                        if(removeYes==1){
+                                            //先下後上
+                                            Log.e("AAAAAA", "先下後上")
+                                            b.startAnimation(dani2)
+                                            btx!!.startAnimation(uani2)
+                                            arenext=1
+                                        }else{
+                                            //先下後上
+                                            Log.e("AAAAAA", "先下後上")
+                                            b.startAnimation(dani)
+                                            btx!!.startAnimation(uani)
+                                            arenext=1
+                                        }
                                     }
                                     if(xx==-1&&yy==0){
-                                        //先上後下
-                                        Log.e("AAAAAA", "先上後下")
-                                        b.startAnimation(uani)
-                                        btx!!.startAnimation(dani)
-                                        arenext=1
+                                        if(removeYes==1){
+                                            //先上後下
+                                            Log.e("AAAAAA", "先上後下")
+                                            b.startAnimation(uani2)
+                                            btx!!.startAnimation(dani2)
+                                            arenext = 1
+                                        }else {
+                                            //先上後下
+                                            Log.e("AAAAAA", "先上後下")
+                                            b.startAnimation(uani)
+                                            btx!!.startAnimation(dani)
+                                            arenext = 1
+                                        }
                                     }
 
                                     val handler = Handler()
                                     handler.postDelayed(Runnable {
                                         if(arenext==1){
-                                            //交換顏色/數字 取得這兩個按鈕的位置 再去mapcolor將對應位置換顏色
-                                            var saveColor = mapColor[Integer.parseInt(splitfrist[0])][Integer.parseInt(splitfrist[1])]
-                                            mapColor[Integer.parseInt(splitfrist[0])][Integer.parseInt(splitfrist[1])] = mapColor[Integer.parseInt(splitsecond[0])][Integer.parseInt(splitsecond[1])]
-                                            mapColor[Integer.parseInt(splitsecond[0])][Integer.parseInt(splitsecond[1])] = saveColor
-
-                                            removeYes = 0
-                                            checkAll()
 
                                             if(removeYes == 1 && mapColor[Integer.parseInt(splitfrist[0])][Integer.parseInt(splitfrist[1])]!=-2){
                                                 //代表本次交換有效 且 兩個其中一個沒消失
@@ -233,7 +294,7 @@ class PlayGameActivity : AppCompatActivity() {
                                             secondLocation = ""
                                             arenext = 0
                                         }
-                                    }, 510)
+                                    }, 10)
                                 }
                             }
                         })
