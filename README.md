@@ -5,4 +5,4 @@
 
 <img src="https://github.com/hunter0113/ktCandyCrash/blob/master/kt1.jpg" width="40%" height="40%">
 
-<img src="https://github.com/hunter0113/ktCandyCrash/blob/master/kt2.jpg" width="40%" height="40%">
+<img src="https://github.com/hunter0113/ktCandyCrash/blob/master/328276.gif" width="40%" height="40%">
