@@ -94,7 +94,7 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    //退出 Firebase 身份验证以及所有社交身份提供方帐号
+    //退出 Firebase 身份驗證以及所有社交身份提供方帳號
     private fun signOut() {
         // [START auth_fui_signout]
         AuthUI.getInstance()
@@ -146,8 +146,8 @@ class MainActivity : AppCompatActivity() {
 
     //顯示使用者姓名
     private fun displayInfo() {
-        val txtUserName = findViewById<TextView>(R.id.txtUserName)
-        txtUserName.text = "歡迎您~"+firebaseUser?.displayName+"\n"+"UID為:"+firebaseUser.getUid();
+      /*  val txtUserName = findViewById<TextView>(R.id.txtUserName)
+        txtUserName.text = "歡迎您~"+firebaseUser?.displayName+"\n"+"UID為:"+firebaseUser.getUid();*/
     }
 
     companion object {

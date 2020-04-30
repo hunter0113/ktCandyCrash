@@ -1,5 +1,6 @@
 package com.user.ktcandycrash
 
+import android.graphics.Color
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.os.Handler
@@ -243,9 +244,10 @@ class PlayGameActivity : AppCompatActivity() {
         for(i in 0..49){
 
             var x=Button(this)
-
+            
             x.hint= rnd.nextInt(6).toString()
             x.text=x.hint
+            x.setTextColor(Color.parseColor("#00FFFFFF"))
             x.setBackgroundResource(imgbox[x.hint.toString().toInt()])
             x.setOnClickListener(clickObj)
             when (i %10) {
