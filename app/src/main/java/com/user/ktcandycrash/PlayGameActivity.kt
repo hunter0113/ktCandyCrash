@@ -244,7 +244,7 @@ class PlayGameActivity : AppCompatActivity() {
         for(i in 0..49){
 
             var x=Button(this)
-            
+
             x.hint= rnd.nextInt(6).toString()
             x.text=x.hint
             x.setTextColor(Color.parseColor("#00FFFFFF"))
