@@ -27,6 +27,7 @@ class MainActivity : AppCompatActivity() {
         val providers = arrayListOf(
             //AuthUI.IdpConfig.EmailBuilder().build(),
             //AuthUI.IdpConfig.PhoneBuilder().build(),
+            AuthUI.IdpConfig.AnonymousBuilder().build(),
             AuthUI.IdpConfig.GoogleBuilder().build(),
             AuthUI.IdpConfig.FacebookBuilder().build()
             //AuthUI.IdpConfig.TwitterBuilder().build()
@@ -149,8 +150,8 @@ class MainActivity : AppCompatActivity() {
 
     //顯示使用者姓名
     private fun displayInfo() {
-      /*  val txtUserName = findViewById<TextView>(R.id.txtUserName)
-        txtUserName.text = "歡迎您~"+firebaseUser?.displayName+"\n"+"UID為:"+firebaseUser.getUid();*/
+        val txtUserName = findViewById<TextView>(R.id.txtUserName)
+        txtUserName.text = "歡迎您~"+firebaseUser?.displayName+"\n"+"UID為:"+firebaseUser.getUid();
     }
 
     companion object {
