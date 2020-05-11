@@ -4,4 +4,8 @@
     <string name="facebook_application_id">1065236500520584</string>
     <!--供Facebook登入模組使用-->
     <string name="facebook_app_id">1065236500520584</string>
+
+    <string name="done">遊戲結束</string>
+    <string name="remain">剩下時間:</string>
+    <string name="grade">目前分數:</string>
 </resources>

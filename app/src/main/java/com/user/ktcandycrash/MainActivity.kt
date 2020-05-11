@@ -131,6 +131,9 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(this,PlayGameActivity::class.java)
         intent.putExtras(bundle)
         startActivity(intent)
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+        Process.killProcess(Process.myPid())
+        System.exit(0)
     }
 
     fun click(v: View?) {

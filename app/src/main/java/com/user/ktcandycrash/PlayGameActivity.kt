@@ -1,13 +1,17 @@
 package com.user.ktcandycrash
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.os.Handler
+import android.os.Process
+import android.os.Process.myPid
 import android.util.Log
 import android.view.View
 import android.view.animation.AlphaAnimation
 import android.widget.Button
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_play_game.*
@@ -23,6 +27,8 @@ var bxx: Button?=null
 var firstIdx =-1
 var sconedIdx =-1
 
+var grade = 0 //分數
+
 class PlayGameActivity : AppCompatActivity() {
     val TAG=MainActivity::class.java.simpleName
     var imgbox = intArrayOf(
@@ -37,6 +43,7 @@ class PlayGameActivity : AppCompatActivity() {
     )
     val bgImg=R.drawable.boom
     val setalpha=AlphaAnimation(1.0f,0.0f)
+
 
     private inner class myClick: View.OnClickListener{
 
@@ -102,8 +109,30 @@ class PlayGameActivity : AppCompatActivity() {
         setContentView(R.layout.activity_play_game)
 
         setcard()
+        gradetext.text = getString(R.string.grade).plus("${grade}")
         Log.d(TAG,"onCreate")
 
+        object : CountDownTimer(60000, 1000) {
+
+            override fun onFinish() {
+                //timertext.text = getString(R.string.done)
+                AlertDialog.Builder(this@PlayGameActivity)
+                    .setTitle(R.string.done)
+                    .setMessage("你的最終分數是:"+ grade.toString())
+                    .setPositiveButton("結束") { _, _ ->
+                        val intent = Intent(this@PlayGameActivity,MainActivity::class.java)
+                        startActivity(intent)
+                        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+                        Process.killProcess(Process.myPid())
+                        System.exit(0)
+                    }
+                    .show()
+            }
+
+            override fun onTick(millisUntilFinished: Long) {
+                timertext.text = getString(R.string.remain).plus("${millisUntilFinished/1000}")
+            }
+        }.start()
     }
     fun bomb(){
 
@@ -170,8 +199,9 @@ class PlayGameActivity : AppCompatActivity() {
         for( i in 0..49){
             if(bt[i].text=="-1"||bt[i].text=="-2"){
                 bt[i].setBackgroundResource(bgImg)
+                grade++
+                gradetext.text = getString(R.string.grade).plus("${grade}")
             }
-
         }
         Handler().postDelayed({ deleteall()},1000)
 
@@ -266,8 +296,8 @@ class PlayGameActivity : AppCompatActivity() {
         }
            for (i in 0..49){
                var params = bt[i].getLayoutParams()
-               params.height = 188
-               params.width = 188
+               //params.height = 150
+               params.width = 150
            }
         for(i in 0..10){
             bomb2()
