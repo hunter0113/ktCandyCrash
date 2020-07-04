@@ -1,6 +1,8 @@
 # ktCandyCrash
 
-仿照CandyCrash製作，有簡易計分計時功能，運用Firebase第三方認證，使用語言kotlin
-
+．使用Kotlin仿照Candy Crash製作。
+．運用Firebase實現第三方登入認證，簡訊OTP註冊認證。
+．動態產生Button物件，並賦予屬性及動畫。
+．簡易計分計時功能。
 
 <img src="https://github.com/hunter0113/ktCandyCrash/blob/master/kt1.jpg" width="25%" height="25%">  <img src="https://github.com/hunter0113/ktCandyCrash/blob/master/328276.gif" width="25%" height="25%">  <img src="https://github.com/hunter0113/ktCandyCrash/blob/master/candy01.jpg" width="25%" height="25%">
