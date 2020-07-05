@@ -5,4 +5,4 @@
 ．動態產生Button物件，並賦予屬性及動畫。<br/>
 ．具有簡易計分計時功能。<br/>
 
-<img src="https://github.com/hunter0113/ktCandyCrash/blob/master/kt1.jpg" width="25%" height="25%">  <img src="https://github.com/hunter0113/ktCandyCrash/blob/master/candycrash.gif" width="25%" height="25%">  <img src="https://github.com/hunter0113/ktCandyCrash/blob/master/candy01.jpg" width="25%" height="25%">
+<img src="https://github.com/hunter0113/ktCandyCrash/blob/master/335540.jpg" width="25%" height="25%">  <img src="https://github.com/hunter0113/ktCandyCrash/blob/master/candycrash.gif" width="25%" height="25%">  <img src="https://github.com/hunter0113/ktCandyCrash/blob/master/candy01.jpg" width="25%" height="25%">
